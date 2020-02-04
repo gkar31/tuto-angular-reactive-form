@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators} from '@angular/forms';
+
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ export class AppComponent {
   title = 'reactive-forms';
 
   registrationForm = this._formBuilder.group({
-    userName: ['Jane Doe'],
+    userName: ['Jane Doe', [Validators.required, Validators.minLength(3)]],
     password: ['toto'],
     confirmPassword: ['toto'],
     address: this._formBuilder.group({
