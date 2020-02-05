@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators} from '@angular/forms';
+import { forbiddenNameValidator } from './shared/user-name.validator';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class AppComponent {
   title = 'reactive-forms';
 
   registrationForm = this._formBuilder.group({
-    userName: ['Jane Doe', [Validators.required, Validators.minLength(3)]],
+    userName: ['Jane Doe', [Validators.required, Validators.minLength(3), forbiddenNameValidator(/password/)]],
     password: ['toto'],
     confirmPassword: ['toto'],
     address: this._formBuilder.group({
