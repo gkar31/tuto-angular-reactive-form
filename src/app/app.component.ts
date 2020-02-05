@@ -24,6 +24,11 @@ export class AppComponent {
   });
 
 
+  get userName() {
+    return this.registrationForm.get('userName');
+  }
+
+
   // registrationForm = new FormGroup({
   //   userName: new FormControl('John Smith'),
   //   password: new FormControl('test'),
