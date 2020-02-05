@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup, EmailValidator} from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormArray, EmailValidator } from '@angular/forms';
 import { forbiddenNameValidator } from './shared/user-name.validator';
 import { PasswordValidator } from './shared/password.validator';
 
@@ -24,7 +24,8 @@ export class AppComponent implements OnInit {
         street: ['Maxwell avenue'],
         city: ['Toulouse'],
         postalCode: ['31109']
-      })
+      }),
+      alternateEmails: this._formBuilder.array([])
     }, {validator: PasswordValidator});
   
 
@@ -54,6 +55,15 @@ export class AppComponent implements OnInit {
 
   get email() {
     return this.registrationForm.get('email');
+  }
+
+
+  get alternateEmails() {
+    return this.registrationForm.get('alternateEmails') as FormArray;
+  }
+
+  addAlternateEmail() {
+    this.alternateEmails.push(this._formBuilder.control(''));
   }
 
   // registrationForm = new FormGroup({
