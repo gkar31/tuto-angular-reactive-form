@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators} from '@angular/forms';
 import { forbiddenNameValidator } from './shared/user-name.validator';
+import { PasswordValidator } from './shared/password.validator';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class AppComponent {
       city: ['Toulouse'],
       postalCode: ['31109']
     })
-  });
+  }, {validator: PasswordValidator});
 
 
   get userName() {
