@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormArray, EmailValidator } from '@angular/forms';
 import { forbiddenNameValidator } from './shared/user-name.validator';
 import { PasswordValidator } from './shared/password.validator';
+import { RegistrationService } from './registration.service';
 
 
 @Component({
@@ -12,6 +13,8 @@ import { PasswordValidator } from './shared/password.validator';
 export class AppComponent implements OnInit {
 
   registrationForm: FormGroup;
+
+  constructor(private _formBuilder: FormBuilder, private _registrationService: RegistrationService) {}
 
   ngOnInit(){
     this.registrationForm = this._formBuilder.group({
@@ -42,7 +45,7 @@ export class AppComponent implements OnInit {
     })
   }
 
-  constructor(private _formBuilder: FormBuilder){}
+  
 
   title = 'reactive-forms';
 
@@ -95,5 +98,15 @@ export class AppComponent implements OnInit {
       }
     })
   }
+
+
+  onSubmit() {
+    console.log(this.registrationForm.value);
+    this._registrationService.register(this.registrationForm.value)
+      .subscribe(
+        response => console.log('Success', response),
+        error => console.error('Error !', error));
+  }
+
 
 }
